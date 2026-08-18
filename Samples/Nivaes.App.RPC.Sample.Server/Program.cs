@@ -1,22 +1,42 @@
+using Microsoft.EntityFrameworkCore;
+using Nivaes.App.RPC.Sample.Server;
 using Nivaes.App.RPC.Sample.Server.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Nivaes.App.RPC.Sample.Server;
 
-builder.AddServiceDefaults();
+internal class Program
+{
+    static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddGrpc();
-//builder.Services.AddHealthChecks();
+        builder.AddServiceDefaults();
 
-var app = builder.Build();
+        builder.AddNpgsqlDbContext<ServerDatabaseContext>("dbAppSample",
+                   settings => { },
+                   options =>
+                   {
+                       options.UseNpgsql(o =>
+                       {
+                           o.EnableRetryOnFailure();
+                       });
+                   });
 
-//app.MapHealthChecks("/health");
+        // Add services to the container.
+        builder.Services.AddGrpc();
+        //builder.Services.AddHealthChecks();
 
-// Configure the HTTP request pipeline.
-app.MapGrpcService<GreeterService>();
-//app.MapGet("/test", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-app.MapGet("/test", () => "OK");
+        var app = builder.Build();
 
-app.MapDefaultEndpoints();
+        //app.MapHealthChecks("/health");
 
-app.Run();
+        // Configure the HTTP request pipeline.
+        app.MapGrpcService<GreeterService>();
+        //app.MapGet("/test", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+        app.MapGet("/test", () => "OK");
+
+        app.MapDefaultEndpoints();
+
+        app.Run();
+    }
+}

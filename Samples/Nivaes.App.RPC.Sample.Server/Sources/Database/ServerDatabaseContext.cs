@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-namespace Nivaes.App.RPC.Sample.Client;
+namespace Nivaes.App.RPC.Sample.Server;
 
-public class DatabaseContext : DbContext
+public class ServerDatabaseContext : DbContext
 {
     #region Constructors
-    public DatabaseContext()
+    public ServerDatabaseContext()
      : base()
     {
     }
 
-    public DatabaseContext(DbContextOptions<DatabaseContext> options)
+    public ServerDatabaseContext(DbContextOptions<ServerDatabaseContext> options)
         : base(options)
     {
     }

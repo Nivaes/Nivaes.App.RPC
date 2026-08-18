@@ -5,7 +5,7 @@ var rpcDatabase = builder.AddPostgres("rpc-postgres", port: 5432)
                       .WithLifetime(ContainerLifetime.Persistent)
                       .WithDataVolume()
                       .WithPgAdmin();
-var dbApp = rpcDatabase.AddDatabase("dbApp");
+var dbApp = rpcDatabase.AddDatabase("dbAppSample");
 #endregion
 
 #region Server
