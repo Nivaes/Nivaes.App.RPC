@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nivaes.App.RPC.Sample.Shared\Nivaes.App.RPC.Sample.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

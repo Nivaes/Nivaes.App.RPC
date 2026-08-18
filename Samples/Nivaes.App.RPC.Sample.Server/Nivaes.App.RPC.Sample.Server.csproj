@@ -11,11 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="Grpc.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Orquestation\Nivaes.App.RPC.AppHost\Nivaes.App.RPC.AppHost.ServiceDefaults\Nivaes.App.RPC.AppHost.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Nivaes.App.RPC.Sample.Shared\Nivaes.App.RPC.Sample.Shared.csproj" />
   </ItemGroup>
 
 </Project>
