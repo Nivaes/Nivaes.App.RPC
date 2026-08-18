@@ -19,7 +19,8 @@ internal class Program
                        options.UseNpgsql(o =>
                        {
                            o.EnableRetryOnFailure();
-                       });
+                       })
+                       .LogTo(Console.WriteLine);
                    });
 
         // Add services to the container.
@@ -28,7 +29,7 @@ internal class Program
 
         var app = builder.Build();
 
-        //app.MapHealthChecks("/health");
+        await app.InitializeLoadDatatest();
 
         // Configure the HTTP request pipeline.
         app.MapGrpcService<GreeterService>();

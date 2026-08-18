@@ -57,6 +57,8 @@ public abstract class DataModel
         }
         else
         {
+            property = newValue;
+
             RaisePropertyChanged(new PropertyChangedEventArgs(propertyName));
 
             return true;

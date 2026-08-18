@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Nivaes.App.RPC.Sample.Client;
 
@@ -74,5 +75,14 @@ public class DatabaseContext : DbContext
                 .IsRequired()
                 .HasColumnName("TimeStampTicks");
         });
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        SQLitePCL.Batteries_V2.Init();
+
+        optionsBuilder.UseSqlite("Data Source=client.db");
+
+        base.OnConfiguring(optionsBuilder);
     }
 }
