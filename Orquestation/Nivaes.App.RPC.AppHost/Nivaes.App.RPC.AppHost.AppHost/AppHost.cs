@@ -1,3 +1,26 @@
-//var builder = DistributedApplication.CreateBuilder(args);
+var builder = DistributedApplication.CreateBuilder(args);
 
-//builder.Build().Run();
+#region Database
+var rpcDatabase = builder.AddPostgres("rpc-postgres", port: 5432)
+                      .WithLifetime(ContainerLifetime.Persistent)
+                      .WithDataVolume()
+                      .WithPgAdmin();
+var dbApp = rpcDatabase.AddDatabase("dbApp");
+#endregion
+
+#region Server
+var appWebApi = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Server>("RPC-Sample-Server")
+                .WithHttpHealthCheck("/health", endpointName: "http")
+                //.WithHttpHealthCheck("/health")
+                .WithReference(rpcDatabase)
+                .WaitFor(rpcDatabase);
+#endregion
+
+#region Cliente
+var appConsole = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Server>("RPC-Sample-Console")
+                .WithReference(appWebApi)
+                .WaitFor(appWebApi);
+
+#endregion
+
+builder.Build().Run();

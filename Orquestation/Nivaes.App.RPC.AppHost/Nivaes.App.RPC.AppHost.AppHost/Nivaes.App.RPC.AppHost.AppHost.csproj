@@ -2,10 +2,19 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-	  <TargetFrameworks>$(_CrossCommonTargets)</TargetFrameworks>
+	  <TargetFrameworks>$(_CommonTargets)</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>52085e4a-f6d8-4773-ba98-2a61b8a3cc26</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Samples\Nivaes.App.RPC.Sample.Console\Nivaes.App.RPC.Sample.Console.csproj" />
+    <ProjectReference Include="..\..\..\Samples\Nivaes.App.RPC.Sample.Server\Nivaes.App.RPC.Sample.Server.csproj" />
+  </ItemGroup>
 
 </Project>
