@@ -10,8 +10,7 @@ var dbApp = rpcDatabase.AddDatabase("dbApp");
 
 #region Server
 var appWebApi = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Server>("RPC-Sample-Server")
-                .WithHttpHealthCheck("/health", endpointName: "http")
-                //.WithHttpHealthCheck("/health")
+                .WithHttpHealthCheck("/health")
                 .WithReference(rpcDatabase)
                 .WaitFor(rpcDatabase);
 #endregion
