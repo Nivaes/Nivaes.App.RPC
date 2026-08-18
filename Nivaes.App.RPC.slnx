@@ -2,7 +2,10 @@
 <Folder Name="/Docs/">
 </Folder>
  <Folder Name="/Orquestation/">
+ <Project Path="Orquestation/Nivaes.App.RPC.AppHost/Nivaes.App.RPC.AppHost.AppHost/Nivaes.App.RPC.AppHost.AppHost.csproj" Id="509fe33e-64f5-4805-8232-905eee712eb1" />
+ <Project Path="Orquestation/Nivaes.App.RPC.AppHost/Nivaes.App.RPC.AppHost.ServiceDefaults/Nivaes.App.RPC.AppHost.ServiceDefaults.csproj" />
  </Folder>
+<Folder Name="/Samples/" />
 
 <Folder Name="/Solution Items/">
     <File Path=".dockerignore" />
@@ -16,5 +19,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Sources/">
+  <Project Path="Sources/Nivaes.App.RPC.AspNetCore/Nivaes.App.RPC.AspNetCore.csproj" Id="16ba9335-1d9a-4a90-9fc0-95a35d312ed5" />
+  <Project Path="Sources/Nivaes.App.RPC/Nivaes.App.RPC.csproj" Id="a2ff7403-a586-4b16-8c1b-d1c803c032bc" />
   </Folder>
   </Solution>
