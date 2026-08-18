@@ -1,0 +1,80 @@
+﻿<Project>
+	<!--<PropertyGroup>
+		<Copyright>Copyright (c) Nivaes Systems S.L.</Copyright>
+		<PackageProjectUrl>https://github.com/Nivaes</PackageProjectUrl>
+		<Authors>Nivaes Systems</Authors>
+		<Owners>Nivaes</Owners>
+		<PackageReleaseNotes>https://www.nivaes.com</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Product>$(AssemblyName) ($(TargetFramework))</Product>
+	</PropertyGroup>-->
+
+	<PropertyGroup>
+		<NoWarn>$(NoWarn);NU1507;1591</NoWarn>
+
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<_SupportedOSPlatformMacOSVersion>13.0</_SupportedOSPlatformMacOSVersion>
+
+		<_SupportedOSPlatformiOSVersion>15.8</_SupportedOSPlatformiOSVersion>
+		<_TargetPlatformiOSVersion>26.0</_TargetPlatformiOSVersion>
+
+		<_SupportedOSPlatformMacCatalystVersion>15.0</_SupportedOSPlatformMacCatalystVersion>
+		<_TargetPlatformMacCatalystVersion>26.0</_TargetPlatformMacCatalystVersion>
+
+		<_SupportedOSPlatformTvOSVersion>15.8</_SupportedOSPlatformTvOSVersion>
+		<_TargetPlatformTvOSVersion>26.0</_TargetPlatformTvOSVersion>
+
+		<_SupportedOSPlatformAndroidVersion>24</_SupportedOSPlatformAndroidVersion>
+
+		<_TargetPlatformWindowsMinVersion>10.0.17763.0</_TargetPlatformWindowsMinVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<_CommonTargets>net10.0</_CommonTargets>
+		<_AndroidTargets>net10.0-android</_AndroidTargets>
+		<_iOSTargets>net10.0-ios</_iOSTargets>
+		<_MacCatalystTargets>net10.0-maccatalyst</_MacCatalystTargets>
+		<_MacOSTargets>net10.0-macos</_MacOSTargets>
+		<_TvOSTargets>net10.0-tvos</_TvOSTargets>
+		<_WindowsTargets>net10.0-windows10.0.26100.0</_WindowsTargets>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IncludeSymbols>true</IncludeSymbols>
+		<Nullable>enable</Nullable>
+		<NeutralLanguage>en</NeutralLanguage>
+
+		<ImplicitUsings>true</ImplicitUsings> 
+
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>portable</DebugType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>portable</DebugType>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsTestProject>$(MSBuildProjectName.Contains('UnitTest'))</IsTestProject>
+		<IsBenchmarksProject>$(MSBuildProjectName.Contains('Benchmarks'))</IsBenchmarksProject>
+		<IsSampleProject>$(MSBuildProjectName.Contains('Sample'))</IsSampleProject>
+
+		<GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+		<!--<GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' and '$(IsTestProject)' != 'true' and '$(IsBenchmarksProject)' != 'true' and '$(IsSampleProject)' != 'true'">true</GeneratePackageOnBuild>-->
+	</PropertyGroup>
+
+</Project>
