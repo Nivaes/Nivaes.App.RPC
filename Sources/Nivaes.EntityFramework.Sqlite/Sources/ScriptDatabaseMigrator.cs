@@ -4,26 +4,11 @@ using System.Text;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Nivaes.App.RPC.Sample.Client;
+namespace Nivaes.EntityFrameworkCore.Sqlite;
 
-public static class DatabaseMigrator
+public static class ScriptDatabaseMigrator
 {
-    private static readonly Migration[] Migrations =
-   [
-       new(
-            "20260818162121_InitialCreate",
-            "Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations.20260818162121_InitialCreate.sql"),
-
-        //new(
-        //    "20260818181000_AddStudent",
-        //    "Nivaes.App.RPC.Sample.Client.MigrationScripts.20260818181000_AddStudent.sql"),
-
-        //new(
-        //    "20260818182000_AddEmail",
-        //    "Nivaes.App.RPC.Sample.Client.MigrationScripts.20260818182000_AddEmail.sql")
-   ];
-
-    public static async Task MigrateAsync(string databasePath)
+    public static async Task MigrateAsync(string databasePath, IEnumerable<VersionScriptMigration> migrations)
     {
         await using var connection =
             new SqliteConnection($"Data Source={databasePath}");
@@ -34,7 +19,7 @@ public static class DatabaseMigrator
 
         var applied = await GetAppliedMigrations(connection);
 
-        foreach (var migration in Migrations)
+        foreach (var migration in migrations)
         {
             if (applied.Contains(migration.Id))
                 continue;
@@ -80,9 +65,9 @@ public static class DatabaseMigrator
 
     private static async Task ApplyMigration(
         SqliteConnection connection,
-        Migration migration)
+        VersionScriptMigration migration)
     {
-        var assembly = typeof(DatabaseMigrator).Assembly;
+        var assembly = typeof(ScriptDatabaseMigrator).Assembly;
 
         await using var stream =
             assembly.GetManifestResourceStream(migration.ResourceName)
@@ -114,7 +99,5 @@ public static class DatabaseMigrator
         //}
     }
 
-    private sealed record Migration(
-        string Id,
-        string ResourceName);
+    
 }

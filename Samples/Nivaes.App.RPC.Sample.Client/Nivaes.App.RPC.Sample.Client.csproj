@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Sources\Nivaes.EntityFramework.Sqlite\Nivaes.EntityFrameworkCore.Sqlite.csproj" />
     <ProjectReference Include="..\Nivaes.App.RPC.Sample.Shared\Nivaes.App.RPC.Sample.Shared.csproj" />
   </ItemGroup>
 

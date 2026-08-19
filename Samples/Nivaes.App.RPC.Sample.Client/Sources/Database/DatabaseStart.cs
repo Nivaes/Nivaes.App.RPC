@@ -3,17 +3,33 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Logging;
+using Nivaes.EntityFrameworkCore.Sqlite;
 
 namespace Nivaes.App.RPC.Sample.Client;
 
 public static class DatabaseStart
 {
+    private static readonly VersionScriptMigration[] Migrations =
+       [
+           new(
+                "20260818162121_InitialCreate",
+                "Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations.20260818162121_InitialCreate.sql"),
+
+            //new(
+            //    "20260818181000_AddStudent",
+            //    "Nivaes.App.RPC.Sample.Client.MigrationScripts.20260818181000_AddStudent.sql"),
+
+            //new(
+            //    "20260818182000_AddEmail",
+            //    "Nivaes.App.RPC.Sample.Client.MigrationScripts.20260818182000_AddEmail.sql")
+       ];
+
     public static async Task InitializeDatabase(string databasePath)
     {
         using var db = new DatabaseContext();
         await db.Database.EnsureCreatedAsync();
 
-        await DatabaseMigrator.MigrateAsync(databasePath);
+        await ScriptDatabaseMigrator.MigrateAsync(databasePath, Migrations);
     }
 
     //public static async Task InitializeDatabase()
