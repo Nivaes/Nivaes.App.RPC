@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nivaes.App.RPC.Sample.Client.Database;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Nivaes.App.RPC.Sample.Client;
 

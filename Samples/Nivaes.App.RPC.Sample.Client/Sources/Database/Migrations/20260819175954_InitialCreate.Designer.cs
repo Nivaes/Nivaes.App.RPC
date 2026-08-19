@@ -11,14 +11,14 @@ using Nivaes.App.RPC.Sample.Client;
 namespace Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260818162121_InitialCreate")]
+    [Migration("20260819175954_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
 
             modelBuilder.Entity("Nivaes.App.RPC.Sample.UserDataModel", b =>
                 {

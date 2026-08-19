@@ -1,10 +1,12 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using System.Reflection;
+using Microsoft.Data.Sqlite;
 
 namespace Nivaes.EntityFrameworkCore.Sqlite;
 
 public static class ScriptDatabaseMigrator
 {
-    public static async Task MigrateAsync(string databasePath, IEnumerable<VersionScriptMigration> migrations)
+    public static async Task MigrateAsync(string databasePath, 
+        IEnumerable<VersionScriptMigration> migrations, Assembly scriptDatabaseAseembly)
     {
         await using var connection =
             new SqliteConnection($"Data Source={databasePath}");
@@ -20,7 +22,7 @@ public static class ScriptDatabaseMigrator
             if (applied.Contains(migration.Id))
                 continue;
 
-            await ApplyMigration(connection, migration);
+            await ApplyMigration(connection, migration, scriptDatabaseAseembly);
         }
     }
 
@@ -61,12 +63,13 @@ public static class ScriptDatabaseMigrator
 
     private static async Task ApplyMigration(
         SqliteConnection connection,
-        VersionScriptMigration migration)
+        VersionScriptMigration migration,
+        Assembly scriptDatabaseAseembly)
     {
-        var assembly = typeof(ScriptDatabaseMigrator).Assembly;
+        //var assembly = typeof(ScriptDatabaseMigrator).Assembly;
 
         await using var stream =
-            assembly.GetManifestResourceStream(migration.ResourceName)
+            scriptDatabaseAseembly.GetManifestResourceStream(migration.ResourceName)
             ?? throw new InvalidOperationException(
                 $"Migration '{migration.Id}' not found.");
 

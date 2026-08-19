@@ -26,7 +26,7 @@ CREATE INDEX "IX_Users_Name" ON "Users" ("Name");
 CREATE INDEX "IX_Users_TimeStampTicks" ON "Users" ("TimeStampTicks");
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20260818162121_InitialCreate', '10.0.8');
+VALUES ('20260819175954_InitialCreate', '10.0.11');
 
 COMMIT;
 

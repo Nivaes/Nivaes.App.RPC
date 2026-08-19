@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Sources\Database\Migrations\20260818162121_InitialCreate.sql" />
+    <None Remove="Sources\Database\Migrations\20260819175954_InitialCreate.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Sources\Database\Migrations\20260818162121_InitialCreate.sql" />
+    <EmbeddedResource Include="Sources\Database\Migrations\20260819175954_InitialCreate.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Nivaes.DataTestGenerator" />
   </ItemGroup>
 
   <ItemGroup>

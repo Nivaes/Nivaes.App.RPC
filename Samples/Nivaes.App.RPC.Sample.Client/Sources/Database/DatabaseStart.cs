@@ -12,8 +12,8 @@ public static class DatabaseStart
     private static readonly VersionScriptMigration[] Migrations =
        [
            new(
-                "20260818162121_InitialCreate",
-                "Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations.20260818162121_InitialCreate.sql"),
+                "20260819175954_InitialCreate",
+                "Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations.20260819175954_InitialCreate.sql"),
 
             //new(
             //    "20260818181000_AddStudent",
@@ -26,10 +26,11 @@ public static class DatabaseStart
 
     public static async Task InitializeDatabase(string databasePath)
     {
-        using var db = new DatabaseContext();
-        await db.Database.EnsureCreatedAsync();
+        //using var db = new DatabaseContext();
+        //await db.Database.EnsureCreatedAsync();
+        var assembly = typeof(DatabaseStart).Assembly;
 
-        await ScriptDatabaseMigrator.MigrateAsync(databasePath, Migrations);
+        await ScriptDatabaseMigrator.MigrateAsync(databasePath, Migrations, assembly);
     }
 
     //public static async Task InitializeDatabase()

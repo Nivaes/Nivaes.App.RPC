@@ -45,21 +45,22 @@ dotnet ef dbcontext optimize `
     --project Nivaes.App.RPC.Sample.Client.csproj `
     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
     --output-dir Sources/Database/CompiledModel `
-    --namespace Nivaes.App.RPC.Sample.Client.Database
+    --namespace Nivaes.App.RPC.Sample.Client.Database `
+    --nativeaot
 ```
 
 Genera script
 
 ```shell
 dotnet ef migrations script `
->>     --project Nivaes.App.RPC.Sample.Client.csproj `
->>     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
->>     --output Sources/Database/Migrations.sql
+     --project Nivaes.App.RPC.Sample.Client.csproj `
+     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
+     --output Sources/Database/Migrations/Migration.sql
 ```
 
 ```shell
 dotnet ef migrations script 0 20260818162121_InitialCreate `
->>     --project Nivaes.App.RPC.Sample.Client.csproj `
->>     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
->>     --output Sources/Database/Migrations/20260818162121_InitialCreate.sql
+     --project Nivaes.App.RPC.Sample.Client.csproj `
+     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
+     --output Sources/Database/Migrations/20260818162121_InitialCreate.sql
 ```

@@ -15,7 +15,7 @@ namespace Nivaes.App.RPC.Sample.Client.Sources.Database.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
 
             modelBuilder.Entity("Nivaes.App.RPC.Sample.UserDataModel", b =>
                 {
