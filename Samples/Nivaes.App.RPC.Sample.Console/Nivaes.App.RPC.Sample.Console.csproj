@@ -9,6 +9,8 @@
     
 	  <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
+
+	  <InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.EntityFrameworkCore.GeneratedInterceptors</InterceptorsNamespaces>
   </PropertyGroup>
 
   <ItemGroup>
