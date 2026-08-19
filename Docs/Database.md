@@ -46,7 +46,8 @@ dotnet ef dbcontext optimize `
     --context Nivaes.App.RPC.Sample.Client.DatabaseContext `
     --output-dir Sources/Database/CompiledModel `
     --namespace Nivaes.App.RPC.Sample.Client.Database `
-    --nativeaot
+    --nativeaot `
+    --precompile-queries 
 ```
 
 Genera script

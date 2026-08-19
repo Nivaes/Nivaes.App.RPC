@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nivaes.App.RPC.Sample.Client.Database;
 
 namespace Nivaes.App.RPC.Sample.Client;
 
@@ -78,8 +77,8 @@ public class DatabaseContext : DbContext
     {
         SQLitePCL.Batteries_V2.Init();
 
-        optionsBuilder.UseSqlite("Data Source=client.db")
-            .UseModel(DatabaseContextModel.Instance);
+        optionsBuilder.UseSqlite("Data Source=client.db");
+        //.UseModel(Database.DatabaseContextModel.Instance);
 
         base.OnConfiguring(optionsBuilder);
     }

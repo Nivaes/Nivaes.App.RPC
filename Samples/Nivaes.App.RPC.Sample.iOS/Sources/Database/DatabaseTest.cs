@@ -3,14 +3,29 @@ using Microsoft.EntityFrameworkCore;
 using Nivaes.App.RPC.Sample.Client;
 using Nivaes.DataTestGenerator;
 
-namespace Nivaes.App.RPC.Sample;
+namespace Nivaes.App.RPC.Sample.iOS;
 
-internal static class Program
+internal static class DatabaseTest
 {
-    static async Task Main(string[] args)
+    public static async Task InitializeTest()
     {
+        AppDomain.CurrentDomain.UnhandledException += (s, a) =>
+        {
+        };
+        TaskScheduler.UnobservedTaskException += (s, a) =>
+        {
+        };
+        ObjCRuntime.Runtime.MarshalManagedException += (s, a) =>
+        {
+        };
+        ObjCRuntime.Runtime.MarshalObjectiveCException += (s, a) =>
+        {
+        };
+
         //await DatabaseStart.InitializeDatabase("Data Source=client.db");
-        await DatabaseStart.InitializeDatabase("client.db");
+        string fileDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library", "client.db");
+
+        await DatabaseStart.InitializeDatabase(fileDatabase);
 
         await SaveUsers();
         await LoadUsers();
@@ -43,8 +58,16 @@ internal static class Program
             users.Add(user);
         }
 
-        await db.Users.AddRangeAsync(users);
-        await db.SaveChangesAsync();
+        try
+        {
+            db.Users.AddRange(users);
+            await db.Users.AddRangeAsync(users);
+            await db.SaveChangesAsync();
+        }
+        catch(Exception ex)
+        {
+
+        }
     }
 
     private static async Task LoadUsers()
