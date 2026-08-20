@@ -35,7 +35,7 @@ internal static class DatabaseTest
 
     private static async Task SaveUsers()
     {
-        using DatabaseContext db = new DatabaseContext();
+        await using DatabaseContext db = new DatabaseContext();
 
         var users = new List<UserDataModel>();
 
@@ -66,13 +66,13 @@ internal static class DatabaseTest
         }
         catch(Exception ex)
         {
-
+            Debug.WriteLine(ex.Message);
         }
     }
 
     private static async Task LoadUsers()
     {
-        using DatabaseContext db = new DatabaseContext();
+        await using var db = new DatabaseContext();
 
         //var usr = db.Users.AsAsyncEnumerable();
         var usr = await db.Users.ToArrayAsync();
@@ -85,7 +85,7 @@ internal static class DatabaseTest
 
         foreach (var user in usr)
         {
-            Console.WriteLine(user.Name);
+            Debug.WriteLine(user.Name);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace Nivaes.App.RPC.Sample.iOS
         [Export("scene:willConnectToSession:options:")]
         public void WillConnect(UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
         {
+            DatabaseTest.InitializeTest().GetAwaiter().GetResult();
+            
             // Use this method to optionally configure and attach the UIWindow 'Window' to the provided UIWindowScene 'scene'.
             // Since we are not using a storyboard, the 'Window' property needs to be initialized and attached to the scene.
             // This delegate does not imply the connecting scene or session are new (see UIApplicationDelegate 'GetConfiguration' instead).

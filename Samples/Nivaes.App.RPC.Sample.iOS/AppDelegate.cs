@@ -6,9 +6,6 @@ namespace Nivaes.App.RPC.Sample.iOS
         public override bool FinishedLaunching(UIApplication application, NSDictionary? launchOptions)
         {
             // Override point for customization after application launch.
-
-            DatabaseTest.InitializeTest().GetAwaiter().GetResult();
-
             return true;
         }
 
