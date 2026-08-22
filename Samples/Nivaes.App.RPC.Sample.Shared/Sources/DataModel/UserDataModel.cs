@@ -7,6 +7,8 @@ namespace Nivaes.App.RPC.Sample;
 public class UserDataModel
     : DataModel
 {
+    public override Guid Id => IdUser;
+
     public Guid IdUser { get; set; }
 
     public string? Identification

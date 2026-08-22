@@ -2,8 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+	  
+	  <AssemblyName>Nivaes.App.Rpc.Sample</AssemblyName>
+	  <RootNamespace>Nivaes.App.Rpc.Sample</RootNamespace>
+
+	  <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sources\Nivaes.App.Rpc.Shared\Nivaes.App.Rpc.Shared.csproj" />
+  </ItemGroup>
 
 </Project>

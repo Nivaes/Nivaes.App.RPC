@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Nivaes.App.Rpc;
 
 namespace Nivaes.App.RPC.Sample;
 
 public abstract class DataModel
-    : INotifyPropertyChanged
+    : INotifyPropertyChanged, IRpcDataModel
 {
+    public abstract Guid Id { get; }
+
     #region TimeStamp
     //[MemoryPackIgnore]
     public DateTime TimeStamp
@@ -28,6 +31,7 @@ public abstract class DataModel
         }
         set => field = value;
     }
+
     #endregion
 
     #region INotifyPropertyChanged

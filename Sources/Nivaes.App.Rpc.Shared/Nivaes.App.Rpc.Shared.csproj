@@ -16,6 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MemoryPack" />
     <PackageReference Include="protobuf-net.Grpc" />
   </ItemGroup>
 
