@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>$(_CommonTargets)</TargetFrameworks>
+	  <AssemblyName>Nivaes.App.Rpc</AssemblyName>
+	  <RootNamespace>Nivaes.App.Rpc</RootNamespace>
+	  
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <IsAotCompatible>true</IsAotCompatible>
+	  <!--<RunAOTAnalysis>true</RunAOTAnalysis>-->
+	  <WarningsAsErrors>IL2CPP;IL3xxx</WarningsAsErrors>
+	  <OptimizationPreference>Speed</OptimizationPreference>
+	  <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="protobuf-net.Grpc" />
+  </ItemGroup>
+
+</Project>

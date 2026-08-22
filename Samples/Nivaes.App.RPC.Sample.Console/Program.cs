@@ -1,7 +1,16 @@
 ﻿using System.Diagnostics;
+using Grpc.Core;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Nivaes.App.Rpc;
 using Nivaes.App.RPC.Sample.Client;
 using Nivaes.DataTestGenerator;
+using ProtoBuf.Grpc;
+using ProtoBuf.Grpc.Client;
 
 namespace Nivaes.App.RPC.Sample;
 
@@ -9,24 +18,61 @@ internal static class Program
 {
     static async Task Main(string[] args)
     {
+        var builder = Host.CreateApplicationBuilder(args);
+
+        // Servicios
+        //builder.Services.AddSingleton<MyService>();
+
+        // Logging
+        builder.Logging.AddConsole();
+
+        using var host = builder.Build();
+
+        //var service = host.Services.GetRequiredService<MyService>();
+        //await service.RunAsync();
+
         //await DatabaseStart.InitializeDatabase("Data Source=client.db");
-        await DatabaseStart.InitializeDatabase("client.db");
+        //await DatabaseStart.InitializeDatabase("client.db");
+        await DatabaseStart.InitializeDatabase();
 
         await SaveUsers();
-        await LoadUsers();
+        //await LoadUsers();
 
-        Console.WriteLine("Hello, World!");
+        GrpcClientFactory.AllowUnencryptedHttp2 = true;
+        //var innerHandler = new SocketsHttpHandler();
+
+        //var grpcWebHandler = new GrpcWebHandler(
+        //    GrpcWebMode.GrpcWeb,
+        //    innerHandler);
+        //var httpClient = new HttpClient(grpcWebHandler);
+
+        var url = builder.Configuration["services:SampleServer:Grpc:0"];
+        //using var channel = GrpcChannel.ForAddress(url!,
+        //    new GrpcChannelOptions
+        //    {
+        //        HttpClient = httpClient
+        //    });
+        using var channel = GrpcChannel.ForAddress(url!);
+
+        //GrpcChannel channel = await GetGrpcChannel().ConfigureAwait(false);
+        var service = channel.CreateGrpcService<ISendSyncDataContract>();
+
+        using var cancel = new CancellationTokenSource(TimeSpan.FromMinutes(1));
+        var options = new CallOptions(cancellationToken: cancel.Token);
+        //var aa = await service.GetData(/*new SyncData()*/);
+        var message = await service.Echo("Message");
+
+        Console.Write(message);
     }
 
     private static async Task SaveUsers()
     {
-        using DatabaseContext db = new DatabaseContext();
+        await using DatabaseContext db = new DatabaseContext();
 
         var users = new List<UserDataModel>();
 
         for (int i = 1; i <= 1000; i++)
         {
-
             var contact = ContactGenerator.Instance.GenerateContact();
 
             var user = new UserDataModel

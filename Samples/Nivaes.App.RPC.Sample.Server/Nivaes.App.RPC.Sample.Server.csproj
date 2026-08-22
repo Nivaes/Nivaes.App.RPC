@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -7,22 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
-    <PackageReference Include="Grpc.AspNetCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Nivaes.DataTestGenerator" />
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Orquestation\Nivaes.App.RPC.AppHost\Nivaes.App.RPC.AppHost.ServiceDefaults\Nivaes.App.RPC.AppHost.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\Nivaes.App.RPC.Sample.Shared\Nivaes.App.RPC.Sample.Shared.csproj" />
+    <ProjectReference Include="..\..\Orquestation\Nivaes.App.Rpc.AppHost\Nivaes.App.Rpc.AppHost.ServiceDefaults\Nivaes.App.Rpc.AppHost.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\Sources\Nivaes.App.Rpc.AspNetCore\Nivaes.App.Rpc.AspNetCore.Server.csproj" />
+    <ProjectReference Include="..\Nivaes.App.Rpc.Sample.Shared\Nivaes.App.Rpc.Sample.Shared.csproj" />
   </ItemGroup>
 
 </Project>

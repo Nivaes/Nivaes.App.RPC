@@ -1,6 +1,7 @@
+using System.Diagnostics.Metrics;
 using Microsoft.EntityFrameworkCore;
-using Nivaes.App.RPC.Sample.Server;
-using Nivaes.App.RPC.Sample.Server.Services;
+using Nivaes.App.Rpc.AspNetCore.Server;
+using ProtoBuf.Grpc.Server;
 
 namespace Nivaes.App.RPC.Sample.Server;
 
@@ -24,7 +25,8 @@ internal class Program
                    });
 
         // Add services to the container.
-        builder.Services.AddGrpc();
+        //builder.Services.AddGrpc();
+        builder.Services.AddCodeFirstGrpc();
         //builder.Services.AddHealthChecks();
 
         var app = builder.Build();
@@ -32,9 +34,16 @@ internal class Program
         await app.InitializeLoadDatatest();
 
         // Configure the HTTP request pipeline.
-        app.MapGrpcService<GreeterService>();
+        app.MapGrpcService<SendSyncDataService>().EnableGrpcWeb(); 
+
+        //app.UseRouting();
+        //app.UseEndpoints(endpoints =>
+        //{
+        //    endpoints.MapGrpcService<SendSyncDataService>();
+        //});
+
         //app.MapGet("/test", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-        app.MapGet("/test", () => "OK");
+        //app.MapGet("/test", () => "OK");
 
         app.MapDefaultEndpoints();
 

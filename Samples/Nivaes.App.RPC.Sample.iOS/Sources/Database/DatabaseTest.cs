@@ -9,23 +9,34 @@ internal static class DatabaseTest
 {
     public static async Task InitializeTest()
     {
-        AppDomain.CurrentDomain.UnhandledException += (s, a) =>
+        AppDomain.CurrentDomain.UnhandledException += (s, e) =>
         {
+            Console.WriteLine("!!! UnhandledException !!!");
+            Console.WriteLine(e.ExceptionObject);
         };
-        TaskScheduler.UnobservedTaskException += (s, a) =>
+
+        TaskScheduler.UnobservedTaskException += (s, e) =>
         {
+            Console.WriteLine("!!! UnobservedTaskException !!!");
+            Console.WriteLine(e.Exception);
         };
-        ObjCRuntime.Runtime.MarshalManagedException += (s, a) =>
+
+        ObjCRuntime.Runtime.MarshalManagedException += (s, e) =>
         {
+            Console.WriteLine("!!! MarshalManagedException !!!");
         };
-        ObjCRuntime.Runtime.MarshalObjectiveCException += (s, a) =>
+
+        ObjCRuntime.Runtime.MarshalObjectiveCException += (s, e) =>
         {
+            Console.WriteLine("!!! MarshalObjectiveCException !!!");
         };
 
         //await DatabaseStart.InitializeDatabase("Data Source=client.db");
         string fileDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library", "client.db");
+        DatabaseContext.databasePath = fileDatabase;
 
-        await DatabaseStart.InitializeDatabase(fileDatabase);
+        //await DatabaseStart.InitializeDatabase(fileDatabase);
+        await DatabaseStart.InitializeDatabase();
 
         await SaveUsers();
         await LoadUsers();
@@ -41,7 +52,6 @@ internal static class DatabaseTest
 
         for (int i = 1; i <= 1000; i++)
         {
-
             var contact = ContactGenerator.Instance.GenerateContact();
 
             var user = new UserDataModel
@@ -60,13 +70,21 @@ internal static class DatabaseTest
 
         try
         {
+            var aa = db.ChangeTracker;
+            aa.AutoDetectChangesEnabled = false;
+
             db.Users.AddRange(users);
+
             await db.Users.AddRangeAsync(users);
+            
             await db.SaveChangesAsync();
         }
         catch(Exception ex)
         {
             Debug.WriteLine(ex.Message);
+            Console.WriteLine(ex.Message);
+
+            throw;
         }
     }
 
@@ -76,7 +94,6 @@ internal static class DatabaseTest
 
         //var usr = db.Users.AsAsyncEnumerable();
         var usr = await db.Users.ToArrayAsync();
-
 
         //await foreach (var user in usr)
         //{

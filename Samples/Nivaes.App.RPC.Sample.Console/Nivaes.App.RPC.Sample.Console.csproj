@@ -7,7 +7,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<PublishAot>true</PublishAot>
+		<!--<PublishAot>true</PublishAot>-->
 		<InvariantGlobalization>true</InvariantGlobalization>
 
 		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.EntityFrameworkCore.GeneratedInterceptors</InterceptorsNamespaces>
@@ -17,11 +17,16 @@
 		<Folder Include="Sources\" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup>	
+		<PackageReference Include="Grpc.Net.Client.Web" />
+		<PackageReference Include="Grpc.Net.Client" />
+		<PackageReference Include="protobuf-net.Grpc" />
+		
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tasks">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
 
 		<PackageReference Include="Nivaes.DataTestGenerator" />
 	</ItemGroup>
@@ -30,7 +35,8 @@
   </ItemGroup>-->
 
 	<ItemGroup>
-		<ProjectReference Include="..\Nivaes.App.RPC.Sample.Client\Nivaes.App.RPC.Sample.Client.csproj" />
+		<ProjectReference Include="..\Nivaes.App.Rpc.Sample.Client\Nivaes.App.Rpc.Sample.Client.csproj" />
 	</ItemGroup>
 
+	
 </Project>

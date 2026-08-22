@@ -9,14 +9,14 @@ var serverDb = postgres.AddDatabase("dbAppSample");
 #endregion
 
 #region Server
-var appWebApi = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Server>("RPC-Sample-Server")
+var appWebApi = builder.AddProject<Projects.Nivaes_App_Rpc_Sample_Server>("SampleServer")
                 .WithHttpHealthCheck("/health")
                 .WithReference(serverDb)
                 .WaitFor(serverDb);
 #endregion
 
 #region Cliente
-var appConsole = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Console>("RPC-Sample-Console")
+var appConsole = builder.AddProject<Projects.Nivaes_App_RPC_Sample_Console>("SampleConsole")
                 .WithReference(appWebApi)
                 .WaitFor(appWebApi);
 

@@ -1,7 +1,5 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nivaes.DataTestGenerator;
-using Npgsql.Replication;
 
 namespace Nivaes.App.RPC.Sample.Server;
 

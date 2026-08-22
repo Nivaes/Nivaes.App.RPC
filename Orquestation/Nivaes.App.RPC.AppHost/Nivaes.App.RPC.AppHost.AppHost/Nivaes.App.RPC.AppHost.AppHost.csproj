@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Samples\Nivaes.App.RPC.Sample.Console\Nivaes.App.RPC.Sample.Console.csproj" />
-    <ProjectReference Include="..\..\..\Samples\Nivaes.App.RPC.Sample.Server\Nivaes.App.RPC.Sample.Server.csproj" />
+    <ProjectReference Include="..\..\..\Samples\Nivaes.App.RPC.Sample.Server\Nivaes.App.Rpc.Sample.Server.csproj" />
   </ItemGroup>
 
 </Project>

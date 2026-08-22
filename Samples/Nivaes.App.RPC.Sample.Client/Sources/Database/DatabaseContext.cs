@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nivaes.App.Rpc.Client;
 
 namespace Nivaes.App.RPC.Sample.Client;
 
@@ -73,12 +74,15 @@ public class DatabaseContext : DbContext
         });
     }
 
+    public static string databasePath = "client.db";
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         SQLitePCL.Batteries_V2.Init();
 
-        optionsBuilder.UseSqlite("Data Source=client.db");
-        //.UseModel(Database.DatabaseContextModel.Instance);
+        optionsBuilder.UseSqlite($"Data Source={databasePath}")
+            .AddInterceptors(new RpcSaveChangesInterceptor());
+            //.UseModel(Client.Database.DatabaseContextModel.Instance);
 
         base.OnConfiguring(optionsBuilder);
     }
