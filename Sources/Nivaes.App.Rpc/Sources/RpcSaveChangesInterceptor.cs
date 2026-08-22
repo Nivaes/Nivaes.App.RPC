@@ -35,21 +35,21 @@ namespace Nivaes.App.Rpc.Client
 
         public override ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
         {
-            var changes = eventData.Context!.ChangeTracker
-                   .Entries()
-                   //.Where(x => x.State is
-                   //    EntityState.Added or
-                   //    EntityState.Modified or
-                   //    EntityState.Deleted)
-                   .ToList();
+            //var changes = eventData.Context!.ChangeTracker
+            //       .Entries()
+            //       //.Where(x => x.State is
+            //       //    EntityState.Added or
+            //       //    EntityState.Modified or
+            //       //    EntityState.Deleted)
+            //       .ToList();
 
-            foreach (var entry in changes)
-            {
-                Console.WriteLine(entry.Metadata.Name);
-                Console.WriteLine(entry.Entity);
-                Console.WriteLine($"{entry.Metadata.ClrType.FullName}: {entry.State}");
-                Console.WriteLine("--------");
-            }
+            //foreach (var entry in changes)
+            //{
+            //    Console.WriteLine(entry.Metadata.Name);
+            //    Console.WriteLine(entry.Entity);
+            //    Console.WriteLine($"{entry.Metadata.ClrType.FullName}: {entry.State}");
+            //    Console.WriteLine("--------");
+            //}
 
             return base.SavedChangesAsync(eventData, result, cancellationToken);
         }
@@ -84,10 +84,18 @@ namespace Nivaes.App.Rpc.Client
 
             foreach (var entry in changes)
             {
-                Console.WriteLine(entry.Metadata.Name);
-                Console.WriteLine(entry.Entity);
-                Console.WriteLine($"{entry.Metadata.ClrType.FullName}: {entry.State}");
-                Console.WriteLine("--------");
+                var item = entry.Entity as IRpcDataModel;
+                if(item != null)
+                {
+                    Console.WriteLine(item.Id);
+                    Console.WriteLine(item.TimeStampTicks);
+                    Console.WriteLine(entry.Metadata.Name);
+                }
+
+                //Console.WriteLine(entry.Metadata.Name);
+                //Console.WriteLine(entry.Entity);
+                //Console.WriteLine($"{entry.Metadata.ClrType.FullName}: {entry.State}");
+                //Console.WriteLine("--------");
             }
 
             return base.SavingChangesAsync(eventData, result, cancellationToken);
