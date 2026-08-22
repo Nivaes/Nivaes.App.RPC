@@ -52,7 +52,7 @@ internal static class DatabaseTest
 
         for (int i = 1; i <= 1000; i++)
         {
-            var contact = ContactGenerator.Instance.GenerateContact();
+            var contact = ContactGenerator.GenerateContact();
 
             var user = new UserDataModel
             {

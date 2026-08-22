@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MemoryPack;
 
 namespace Nivaes.App.RPC.Sample;
 
-public class UserDataModel
+[MemoryPackable]
+public partial class UserDataModel
     : DataModel
 {
     public override Guid Id => IdUser;
