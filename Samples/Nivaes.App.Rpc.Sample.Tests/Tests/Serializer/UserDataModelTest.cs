@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MemoryPack;
+﻿using MemoryPack;
 using Nivaes.App.RPC.Sample;
 using Nivaes.DataTestGenerator;
 
 namespace Nivaes.App.Rpc.Test.Serializer
 {
-    public class SerializeTest
+    public class UserDataModelTest
     {
         [Fact]
         public void SerializerDataModel()
