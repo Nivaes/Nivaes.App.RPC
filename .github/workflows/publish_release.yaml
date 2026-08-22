@@ -1,0 +1,18 @@
+name: Publish Release
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build_release:
+    uses: Nivaes/Nivaes.Workflows/.github/workflows/basic_lib_publish_release.yaml@develop
+    with:
+      nuget_source: nuget.org
+    secrets:
+      nuget_token: ${{ secrets.NIVAES_NUGET_TOKEN }}

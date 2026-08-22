@@ -28,6 +28,17 @@
     <File Path="global.json" />
     <File Path="README.md" />
   </Folder>
+  <Folder Name="/Solution Items/.github/" />
+  <Folder Name="/Solution Items/.github/codeql/">
+    <File Path=".github/codeql/codeql-config.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/workflows/">
+    <File Path=".github/workflows/build_release.yaml" />
+    <File Path=".github/workflows/ci.yaml" />
+    <File Path=".github/workflows/CodeQL.yaml" />
+    <File Path=".github/workflows/delete-old-runs.yaml" />
+    <File Path=".github/workflows/publish_release.yaml" />
+  </Folder>
   <Folder Name="/Sources/">
   <Project Path="Sources/Nivaes.App.Rpc.AspNetCore/Nivaes.App.Rpc.AspNetCore.Server.csproj" Id="16ba9335-1d9a-4a90-9fc0-95a35d312ed5" />
   <Project Path="Sources/Nivaes.App.Rpc.Shared/Nivaes.App.Rpc.Shared.csproj" Id="0bf402f2-8ff2-40ee-99d1-780a1a63c27f" />
