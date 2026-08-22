@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nivaes.App.Rpc.Client;
+using Nivaes.App.Rpc.Client.EntityFramework;
 
 namespace Nivaes.App.RPC.Sample.Client;
 

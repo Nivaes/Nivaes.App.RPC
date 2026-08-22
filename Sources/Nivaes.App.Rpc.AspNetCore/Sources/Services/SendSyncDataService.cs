@@ -1,25 +1,34 @@
 using Grpc.Core;
+using MagicOnion;
+using MagicOnion.Server;
 using Microsoft.Extensions.Logging;
 
 namespace Nivaes.App.Rpc.AspNetCore.Server;
 
 public class SendSyncDataService(ILogger<SendSyncDataService> logger) 
-    : ISendSyncDataContract
+    : ServiceBase<ISendSyncDataService>,
+        ISendSyncDataService
 {
-    public ValueTask<string> Echo(string message/*, ServerCallContext? context = null*/)
+    //public ValueTask<string> Echo(string message/*, ServerCallContext? context = null*/)
+    //{
+    //    logger.LogInformation($"Echo{message}");
+    //    return ValueTask.FromResult(message);
+    //}
+
+    public async UnaryResult<string> Echo(string message)
     {
         logger.LogInformation($"Echo{message}");
-        return ValueTask.FromResult(message);
+        return message;
     }
 
-    ValueTask<SyncData> ISendSyncDataContract.GetData(IAsyncStreamReader<SyncData> requestStream/*, ServerCallContext? context*/)
-    {
-        //logger.LogInformation("The message is received from {id}", requestStream.Current.Id);
-        logger.LogInformation("The message is received");
+    //ValueTask<SyncData> ISendSyncDataService.GetData(IAsyncStreamReader<SyncData> requestStream/*, ServerCallContext? context*/)
+    //{
+    //    //logger.LogInformation("The message is received from {id}", requestStream.Current.Id);
+    //    logger.LogInformation("The message is received");
 
-        return ValueTask.FromResult(new SyncData
-        {
+    //    return ValueTask.FromResult(new SyncData
+    //    {
 
-        });
-    }
+    //    });
+    //}
 }

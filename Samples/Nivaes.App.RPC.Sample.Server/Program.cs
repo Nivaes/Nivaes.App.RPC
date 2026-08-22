@@ -1,7 +1,5 @@
-using System.Diagnostics.Metrics;
 using Microsoft.EntityFrameworkCore;
 using Nivaes.App.Rpc.AspNetCore.Server;
-using ProtoBuf.Grpc.Server;
 
 namespace Nivaes.App.RPC.Sample.Server;
 
@@ -24,17 +22,13 @@ internal class Program
                        .LogTo(Console.WriteLine);
                    });
 
-        // Add services to the container.
-        //builder.Services.AddGrpc();
-        builder.Services.AddCodeFirstGrpc();
-        //builder.Services.AddHealthChecks();
+        builder.Services.AddMagicOnion();
 
         var app = builder.Build();
 
         await app.InitializeLoadDatatest();
 
-        // Configure the HTTP request pipeline.
-        app.MapGrpcService<SendSyncDataService>().EnableGrpcWeb(); 
+        app.MapMagicOnionService(typeof(SendSyncDataService).Assembly);
 
         //app.UseRouting();
         //app.UseEndpoints(endpoints =>

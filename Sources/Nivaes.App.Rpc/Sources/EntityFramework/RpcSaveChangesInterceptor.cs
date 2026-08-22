@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
-namespace Nivaes.App.Rpc.Client
+namespace Nivaes.App.Rpc.Client.EntityFramework
 {
     public class RpcSaveChangesInterceptor : SaveChangesInterceptor
     {

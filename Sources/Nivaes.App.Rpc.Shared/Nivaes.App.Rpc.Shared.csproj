@@ -16,8 +16,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MagicOnion.Abstractions" />
+    <PackageReference Include="MagicOnion.Shared" />
     <PackageReference Include="MemoryPack" />
-    <PackageReference Include="protobuf-net.Grpc" />
   </ItemGroup>
 
 </Project>

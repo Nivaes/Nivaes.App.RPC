@@ -1,16 +1,12 @@
-﻿using System.Diagnostics;
-using Grpc.Core;
+﻿using Grpc.Core;
 using Grpc.Net.Client;
-using Grpc.Net.Client.Web;
+using MagicOnion.Client;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Nivaes.App.Rpc;
 using Nivaes.App.RPC.Sample.Client;
 using Nivaes.DataTestGenerator;
-using ProtoBuf.Grpc;
-using ProtoBuf.Grpc.Client;
 
 namespace Nivaes.App.RPC.Sample;
 
@@ -38,28 +34,14 @@ internal static class Program
         await SaveUsers();
         //await LoadUsers();
 
-        GrpcClientFactory.AllowUnencryptedHttp2 = true;
-        //var innerHandler = new SocketsHttpHandler();
-
-        //var grpcWebHandler = new GrpcWebHandler(
-        //    GrpcWebMode.GrpcWeb,
-        //    innerHandler);
-        //var httpClient = new HttpClient(grpcWebHandler);
+        //GrpcClientFactory.AllowUnencryptedHttp2 = true;
 
         var url = builder.Configuration["services:SampleServer:Grpc:0"];
-        //using var channel = GrpcChannel.ForAddress(url!,
-        //    new GrpcChannelOptions
-        //    {
-        //        HttpClient = httpClient
-        //    });
-        using var channel = GrpcChannel.ForAddress(url!);
+        //var url = builder.Configuration["services:SampleServer:https:0"];
 
-        //GrpcChannel channel = await GetGrpcChannel().ConfigureAwait(false);
-        var service = channel.CreateGrpcService<ISendSyncDataContract>();
+        var channel = GrpcChannel.ForAddress(url!);
+        var service = MagicOnionClient.Create<ISendSyncDataService>(channel);
 
-        using var cancel = new CancellationTokenSource(TimeSpan.FromMinutes(1));
-        var options = new CallOptions(cancellationToken: cancel.Token);
-        //var aa = await service.GetData(/*new SyncData()*/);
         var message = await service.Echo("Message");
 
         Console.Write(message);

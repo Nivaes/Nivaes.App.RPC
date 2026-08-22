@@ -17,11 +17,8 @@
 		<Folder Include="Sources\" />
 	</ItemGroup>
 
-	<ItemGroup>	
-		<PackageReference Include="Grpc.Net.Client.Web" />
-		<PackageReference Include="Grpc.Net.Client" />
-		<PackageReference Include="protobuf-net.Grpc" />
-		
+	<ItemGroup>		
+		<PackageReference Include="MagicOnion.Client" />		
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tasks">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

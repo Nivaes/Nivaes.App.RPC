@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore.Server" />
-    <PackageReference Include="Grpc.AspNetCore.Web" />
+    <PackageReference Include="MagicOnion.Server" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
   </ItemGroup>
 
